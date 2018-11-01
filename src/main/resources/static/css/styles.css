@@ -1,0 +1,15 @@
+input {
+  border-bottom-color: rgba(0,0,0,0.35);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  width: 100%;
+}
+
+.nav-link {
+  color: white;
+}
+
+.navbar {
+  width: 100%;
+}
