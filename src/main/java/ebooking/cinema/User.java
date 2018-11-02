@@ -26,7 +26,7 @@ public class User {
     public boolean login() {
 
                 try{
-                    Connection  myConn=  DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","LegendOfLink30");
+                    Connection  myConn=  DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","password");
                     Statement  myStatment=  myConn.createStatement();
                     ResultSet  myResult=  myStatment.executeQuery("SELECT *  FROM user");
                     while(myResult.next()){
