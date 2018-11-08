@@ -24,7 +24,7 @@
           <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="r#" th:href="@{/register}">Registration</a>
+          <a class="nav-link" href="#" th:href="@{/register}">Registration</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="#" th:href="@{/login}">Login</a>
@@ -52,7 +52,7 @@
         <span>Username</span>
       </div>
       <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{username}" placeholder="Username">
+          <input type="text" th:field="*{email}" placeholder="Email">
       </div>
     </div>
 	  
@@ -71,11 +71,11 @@
 
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="../static/js/jquery-3.2.1.min.js"></script>
+  <script src="js/jquery-3.2.1.min.js"></script>
 
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="../static/js/popper.min.js"></script>
-  <script src="../static/js/bootstrap-4.0.0.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap-4.0.0.js"></script>
 </body>
 
 </html>
