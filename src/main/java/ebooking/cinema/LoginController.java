@@ -17,10 +17,10 @@ public class LoginController {
 
     @PostMapping("/login")
     public String userSubmit(@ModelAttribute("user") User user) {
-        System.out.println(user.email);
+        System.out.println(user.username);
         System.out.println(user.password);
         if (user.login()) {
-            System.out.println("User status: " + user.loggedIn);
+            //System.out.println("User status: " + user.loggedIn);
             return "index";
         }
 
