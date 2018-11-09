@@ -16,9 +16,16 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String userSubmit(@ModelAttribute User user) {
+    public String userSubmit(@ModelAttribute("user") User user) {
         System.out.println(user.username);
         System.out.println(user.password);
-        return "login";
+        if (user.login()) {
+            //System.out.println("User status: " + user.loggedIn);
+            return "index";
+        }
+
+        else {
+            return "login";
+        }
     }
 }

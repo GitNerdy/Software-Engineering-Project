@@ -21,20 +21,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="../static/index.html">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="register.html">Registration</a>
+          <a class="nav-link" href="#" th:href="@{/register}">Registration</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="login.html">Login</a>
+          <a class="nav-link" href="#" th:href="@{/login}">Login</a>
         </li>
-		  <li class="nav-item">
-		  	<a class="nav-link" href="adminMain.html">Admin</a>
-		  </li>
-		  <li class="nav-item">
-		  	<a  class="nav-link" href="editInfo.html">Edit Info</a>
-		  </li>
+        <!-- <li class="nav-item" th:switch="${user.loggedIn}">
+                <a th:case="true" class="nav-link" href="editInfo.html">Edit Info</a>
+            </li> -->
+        <!-- <li class="nav-item" th:switch="${user.loggedIn}">
+            <a th:case="true" class="nav-link" href="adminMain.html">Admin</a>
+        </li> -->
       </ul>
       <form class="form-inline my-2 my-lg-0" action="search.html">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -52,7 +52,7 @@
         <span>Username</span>
       </div>
       <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{username}" placeholder="Username">
+          <input type="text" th:field="*{username}" placeholder="Email">
       </div>
     </div>
 	  
@@ -71,11 +71,11 @@
 
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="../static/js/jquery-3.2.1.min.js"></script>
+  <script src="js/jquery-3.2.1.min.js"></script>
 
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="../static/js/popper.min.js"></script>
-  <script src="../static/js/bootstrap-4.0.0.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap-4.0.0.js"></script>
 </body>
 
 </html>
