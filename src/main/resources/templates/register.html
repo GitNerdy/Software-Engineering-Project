@@ -44,7 +44,7 @@
   </nav>
 
   <div class="container">
-    <form action="#" th:action="@{/register}" th:object="${regUser}" method="post">
+    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
 
       <div class="row">
         <div class="col-xs-12">
@@ -63,7 +63,7 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <input type="text" th:field="*{email}" placeholder="Email Address" value="">
+          <input type="text" th:field="*{username}" placeholder="Email Address" value="">
         </div>
       </div>
       <!-- End Email Section -->
