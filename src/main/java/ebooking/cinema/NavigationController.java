@@ -17,4 +17,9 @@ public class NavigationController {
         return "index";
     }
 
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "adminMain";
+    }
+
 }

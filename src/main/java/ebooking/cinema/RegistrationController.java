@@ -14,6 +14,7 @@ public class RegistrationController {
     @GetMapping("/register")
     public String registerForm(Model model) {
         model.addAttribute("user", new User());
+        model.addAttribute("address", new Address());
         return "register";
     }
 
@@ -24,6 +25,7 @@ public class RegistrationController {
         System.out.println(user.email);
         System.out.println(user.fname);
         System.out.println(user.lname);
-        return "register";
+        user.loggedIn = true;
+        return "index";
     }
 }
