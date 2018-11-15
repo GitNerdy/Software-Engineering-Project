@@ -30,10 +30,13 @@
           <a class="nav-link" href="#" th:href="@{/login}">Login</a>
         </li>
         <li class="nav-item" th:switch="${user.loggedIn}">
-                <a th:case="true" class="nav-link" href="editInfo.html">Edit Info</a>
-            </li>
+        <a th:case="true" class="nav-link" href="editInfo.html">Edit Info</a>
+        </li>
+        <li class="nav-item" th:switch="${user.isAdmin}">
+          <a th:case="true" class="nav-link" href="adminMain.html">Admin</a>
+        </li>
         <li class="nav-item" th:switch="${user.loggedIn}">
-            <a th:case="true" class="nav-link" href="adminMain.html">Admin</a>
+          <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0" action="search.html">
