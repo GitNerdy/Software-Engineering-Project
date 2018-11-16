@@ -27,7 +27,7 @@
                 <a th:case="false" class="nav-link" href="#" th:href="@{/login}">Login</a>
             </li>
             <li class="nav-item" th:switch="${user.loggedIn}">
-                <a th:case="true" class="nav-link" href="editInfo.html">Edit Info</a>
+                <a th:case="true" class="nav-link" href="#" th:href="@{/editInfo}">Edit Info</a>
             </li>
             <li class="nav-item" th:switch="${user.isAdmin}">
                 <a th:case="true" class="nav-link" href="#" th:href="@{/admin}">Admin</a>

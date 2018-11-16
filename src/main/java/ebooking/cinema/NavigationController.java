@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class NavigationController {
 
     @GetMapping("/index")
-    public String goHome() {
+    public String goHome(@ModelAttribute("user") User user) {
         //model.addAttribute("user", new User());
         //user.loggedIn = false;
 
@@ -18,7 +18,7 @@ public class NavigationController {
     }
 
     @GetMapping("/admin")
-    public String adminPage() {
+    public String adminPage(@ModelAttribute("user") User user) {
         return "adminMain";
     }
 
