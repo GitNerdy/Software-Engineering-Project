@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -49,39 +49,51 @@
   <div class="container">
 	  <br>
 	  
-	  <div class="row">
-	  	<h3>Admininstrator Main Page</h3>
-	  </div>
+	  	<div class="row">
+	  		<h4>Checkout</h4>
+	  	</div>
 	  
-	<div class="row">
-		<div class="col-sm-6" style="text-align: right;">
-			<a href="editMovieList.html"><button class="btn-active" style="width: 35%;">Manage Movies</button></a>
-		</div>
-		<div class="col-sm-6">
-			<a href="editUsers.html"><button class="btn-active" style="width: 35%;">Manage Users</button></a>
-		</div>
-	</div>
+	  	<hr>
 	  
-	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-6" style="text-align: right;">
-			<a href="editShowTimes.html"><button class="btn-active" style="width: 35%;">Manage Show Times</button></a>
-		</div>
-		<div class="col-sm-6">
-			<a href="editHallList.html"><button class="btn-active" style="width: 35%;">Manage Halls</button></a>
-		</div>
-	</div>
+		<div class="row">
+			<div class="col-sm-2" style="text-align: center;"><b>Movie</b></div>
+			<div class="col-sm-2" style="text-align: center;"><b>Age</b></div>
+			<div class="col-sm-2" style="text-align: center;"><b>Cost</b></div>
+			<div class="col-sm-2" style="text-align: center;"><b>Qty</b></div>
+			<div class="col-sm-2" style="text-align: center;"><b>Total</b></div>
+			<div class="col-sm-2" style="text-align: center;"><b>Delete</b></div>
+	  	</div>
 	  
 	  <br>
 	  
+	  	<div class="row">
+			<div class="col-sm-2" style="text-align: center;">Venom</div>
+			<div class="col-sm-2" style="text-align: center;">Child</div>
+			<div class="col-sm-2" style="text-align: center;">$5.99</div>
+			<div class="col-sm-2" style="text-align: center;">2</div>
+		  	<div class="col-sm-2" style="text-align: center;">$11.98</div>
+			<div class="col-sm-2" style="text-align: center;"><button class="btn-active">Delete</button></div>
+	  	</div>
+	  
+	  	  <br>
+	  
 	  <div class="row">
-	  	<div class="col-sm-6" style="text-align: right;">
-			<a href="reports.html"><button class="btn-active" style="width: 35%;">View Reports</button></a>
-		</div>
-		  <div class="col-sm-6">
-			<a href="editPromotions.html"><button class="btn-active" style="width: 35%;">Manage Promotions</button></a>
-		</div>
+			<div class="col-sm-2" style="text-align: center;">Black Panther</div>
+			<div class="col-sm-2" style="text-align: center;">Adult</div>
+			<div class="col-sm-2" style="text-align: center;">$7.99</div>
+			<div class="col-sm-2" style="text-align: center;">1</div>
+		  	<div class="col-sm-2" style="text-align: center;">$7.99</div>
+		  <div class="col-sm-2" style="text-align: center;"><button class="btn-active">Delete</button></div>
+	  	</div>
+	  
+	  	  <br>
+	  
+	  <hr>
+	  
+	  <div class="row">
+	  	<div class="col-sm-4 offset-8" style="text-align: center;">
+		  Total Cost: [Price Here] <a href="coConf.html"><button class="btn-active">Checkout</button></a>
+		  </div>
 	  </div>
   </div>
 	<!-- End Container -->

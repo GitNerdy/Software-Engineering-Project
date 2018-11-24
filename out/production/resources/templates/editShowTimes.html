@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -50,40 +50,77 @@
 	  <br>
 	  
 	  <div class="row">
-	  	<h3>Admininstrator Main Page</h3>
+	  	<h3>Add/Delete Show Times</h3>
 	  </div>
 	  
 	<div class="row">
-		<div class="col-sm-6" style="text-align: right;">
-			<a href="editMovieList.html"><button class="btn-active" style="width: 35%;">Manage Movies</button></a>
+		<div class="col-sm-4" style="text-align: center;">
+			<b>Start Time</b>
 		</div>
-		<div class="col-sm-6">
-			<a href="editUsers.html"><button class="btn-active" style="width: 35%;">Manage Users</button></a>
+		<div class="col-sm-4" style="text-align: center;">
+			<b>End Time</b>
 		</div>
-	</div>
-	  
-	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-6" style="text-align: right;">
-			<a href="editShowTimes.html"><button class="btn-active" style="width: 35%;">Manage Show Times</button></a>
-		</div>
-		<div class="col-sm-6">
-			<a href="editHallList.html"><button class="btn-active" style="width: 35%;">Manage Halls</button></a>
+		<div class="col-sm-4" style="text-align: center;">
+			<b>Add/Delete</b>
 		</div>
 	</div>
 	  
 	  <br>
 	  
 	  <div class="row">
-	  	<div class="col-sm-6" style="text-align: right;">
-			<a href="reports.html"><button class="btn-active" style="width: 35%;">View Reports</button></a>
+		<div class="col-sm-4" style="text-align: center;">
+			<span>2:00</span>
 		</div>
-		  <div class="col-sm-6">
-			<a href="editPromotions.html"><button class="btn-active" style="width: 35%;">Manage Promotions</button></a>
+		<div class="col-sm-4" style="text-align: center;">
+			<span>4:00</span>
 		</div>
-	  </div>
-  </div>
+		<div class="col-sm-4" style="text-align: center;">
+			<button class="btn-active">Delete</button>
+		</div>
+	</div>
+	  
+	  <br>
+	  
+	  <div class="row">
+		<div class="col-sm-4" style="text-align: center;">
+			<span>4:00</span>
+		</div>
+		<div class="col-sm-4" style="text-align: center;">
+			<span>6:00</span>
+		</div>
+		<div class="col-sm-4" style="text-align: center;">
+			<button class="btn-active">Delete</button>
+		</div>
+	</div>
+	  
+	  <br>
+	  
+	  <div class="row">
+		<div class="col-sm-4" style="text-align: center;">
+			<span>6:00</span>
+		</div>
+		<div class="col-sm-4" style="text-align: center;">
+			<span>8:00</span>
+		</div>
+		<div class="col-sm-4" style="text-align: center;">
+			<button class="btn-active">Delete</button>
+		</div>
+	</div>
+	  
+	  <br>
+	  
+	  <div class="row">
+		<div class="col-sm-4" style="text-align: center;">
+			<input type="time" placeholder="Start Time">
+		</div>
+		<div class="col-sm-4" style="text-align: center;">
+			<input type="time" placeholder="End Time">
+		</div>
+		<div class="col-sm-4" style="text-align: center;">
+			<button class="btn-active">Add</button>
+		</div>
+	</div>
+	  
 	<!-- End Container -->
 
 

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Registration</title>
+  <title>Edit Info</title>
   <!-- Bootstrap -->
   <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
@@ -47,7 +47,7 @@
   </nav>
 
   <div class="container">
-    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+    <form action="regConf.html">
 
       <div class="row">
         <div class="col-xs-12">
@@ -66,7 +66,7 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <input type="text" th:field="*{username}" placeholder="Email Address" value="">
+          <input type="text" name="emailAddress" placeholder="Email Address" value="">
         </div>
       </div>
       <!-- End Email Section -->
@@ -76,7 +76,7 @@
           <span>Password<sup style="color: red;">*</sup></span>
         </div>
         <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{password}" placeholder="Password">
+          <input type="text" name="password" placeholder="Password">
         </div>
       </div>
 
@@ -85,7 +85,7 @@
           <span>First Name<sup style="color: red;">*</sup></span>
         </div>
         <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{fname}" placeholder="Name Here">
+          <input type="text" name="firstName" placeholder="Name Here">
         </div>
       </div>
 
@@ -94,7 +94,7 @@
           <span>Last Name<sup style="color: red;">*</sup></span>
         </div>
         <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{lname}" placeholder="Something">
+          <input type="text" name="lastName" placeholder="Something">
         </div>
       </div>
 
@@ -113,7 +113,7 @@
           <span>Street</span>
         </div>
         <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{street}" placeholder="Street">
+          <input type="text" name="streetName" placeholder="Street">
         </div>
       </div>
 
@@ -122,7 +122,7 @@
           <span>City</span>
         </div>
         <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{city}" placeholder="City">
+          <input type="text" name="city" placeholder="City">
         </div>
       </div>
 
@@ -131,7 +131,7 @@
           <span>State</span>
         </div>
         <div class="offset-2 col-md-6">
-          <select th:field="*{state}">
+          <select name="State">
             <option value="">--State Select--</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
@@ -193,7 +193,7 @@
           <span>Zip Code</span>
         </div>
         <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{zip}" placeholder="Zip Code">
+          <input type="text" name="zipCode" placeholder="Zip Code">
         </div>
       </div>
 
@@ -212,7 +212,7 @@
           <span>Type</span>
         </div>
         <div class="offset-2 col-md-6">
-          <select th:field="*{type}" id="">
+          <select name="Type" id="">
             <option value="MC">Mastercard</option>
             <option value="Visa">Visa</option>
           </select>
@@ -224,7 +224,7 @@
           <span>Card Number</span>
         </div>
         <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{cardNumber}" placeholder="Card Number">
+          <input type="text" name="cardNum" placeholder="Card Number">
         </div>
       </div>
 
@@ -233,16 +233,7 @@
           <span>Security Code</span>
         </div>
         <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{securityCode}" placeholder="Security Code">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <span>Register for Promotion</span>
-        </div>
-        <div class="offset-2 col-md-6">
-          <input type="checkbox" th:field="*{promo}" value=1>
+          <input type="text" name="secCode" placeholder="Security Code">
         </div>
       </div>
       <button class="btn-primary my-2 my-sm-0" type="submit">Submit</button>

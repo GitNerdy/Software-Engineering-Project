@@ -23,7 +23,7 @@
               <li class="nav-item active">
                   <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
               </li>
-              <!--<li class="nav-item" th:switch="${user.loggedIn}">
+              <li class="nav-item" th:switch="${user.loggedIn}">
                   <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
               </li>
               <li class="nav-item" th:switch="${user.loggedIn}">
@@ -37,7 +37,7 @@
               </li>
               <li class="nav-item" th:switch="${user.loggedIn}">
                   <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-              </li> -->
+              </li>
           </ul>
           <form class="form-inline my-2 my-lg-0" action="search.html">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -47,56 +47,34 @@
   </nav>
 
   <div class="container">
-    <form action="login.html">
-      <br>
-	
-		<form action="#" th:action="@{/search}" th:object="${searchQuery}" method="get">
-	  	<div class="row">
-			<!-- <div class="col-sm-3">
-				<label>Title</label>
-        		<input type="search" th:field="*{movieTitle}" placeholder="Search Titles" style="width: auto;"/>
-			</div>
-			<div class="col-sm-3">
-				<label>Show Time</label>
-        		<select name="showTime" th:field="*{time}">
-					<option value=""></option>
-					<option value="2:00">2:00</option>
-					<option value="4:00">4:00</option>
-					<option value="6:00">6:00</option>
-					<option value="8:00">8:00</option>
-					<option value="10:00">10:00</option>
-					<option value="12:00">12:00</option>
-				</select>
-			</div>
-			<div class="col-sm-3">
-				<label>Date</label>
-        		<input type="date" name="date" th:field="*{date}" value="2018-07-22" min="2018-10-10" max="2018-12-31" style="width: auto;"/>
-			</div>
-			<div class="col-sm-3">
-				<button class="btn-active" type="submit">Search</button>
-			</div> -->
-		</div>
-
-            <div class="row">
-                <!-- Need th:each here -->
-                <div class="col-sm-4" th:each="result: ${searchQuery}" style="text-align: center;">
-                    <img th:attr="src=@{|images/${result.image}|}" style="width: 100%; max-height: 505px;"/>
-                    <h3><div th:text="${result.movieTitle}"></div></h3>
-                    <button class="btn-active">Book Ticket</button>
-                </div>
-                <!-- End th:each       -->
-            </div>
-
-
-
-		</form>
-
-
-      <div class="row">
+	  <br>
+	  
+	  <div class="row">
+      <div class="col-sm-6">
+		  <div style="text-align: center;"><h1>Black Panther</h1></div>
+		  <span>T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past.</span>
+		  <h4><b>Show Times</b></h4>
+		  <a href="booking.html">
+		  <section>
+		  	<button class="btn-active" type="submit" >2:00</button>
+			<button class="btn-active my-2 my-sm-0" type="submit">4:00</button>
+			<button class="btn-active my-2 my-sm-0" type="submit">6:00</button>
+			<button class="btn-active my-2 my-sm-0" type="submit">8:00</button>
+			<button class="btn-active my-2 my-sm-0" type="submit">10:00</button>
+			<button class="btn-active my-2 my-sm-0" type="submit">12:00</button>
+		  </section>
+			</a>
       </div>
-    </form>
+		  <div class="col-sm-6">
+			<img src="images/61apTYdaRXL.jpg" alt="">
+			  <div><span><b>Director:</b> Ryan Coogler</span></div>
+			  <div><span><b>Writers:</b> Ryan Coogler, Joe Robert Cole</span></div>
+			  <div><span><b>Stars:</b> Chadwick Boseman, Michael B. Jordan, Lupita Nyong'o</span></div>
+      </div>
+    </div>
+	  
   </div>
-  <!-- End Container -->
+	<!-- End Container -->
 
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

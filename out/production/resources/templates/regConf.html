@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <title>Registration Confirmation</title>
   <!-- Bootstrap -->
   <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
@@ -20,13 +20,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" th:switch="${user.loggedIn}">
           <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
         </li>
-        <li class="nav-item active" th:switch="${user.loggedIn}">
+        <li class="nav-item" th:switch="${user.loggedIn}">
           <a th:case="false" class="nav-link" href="#" th:href="@{/login}">Login</a>
         </li>
         <li class="nav-item" th:switch="${user.loggedIn}">
@@ -39,7 +39,7 @@
           <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/search}" method="get">
+      <form class="form-inline my-2 my-lg-0" action="search.html">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
       </form>
@@ -47,28 +47,20 @@
   </nav>
 
   <div class="container">
-	  <form action="#" th:action="@{/login}" th:object="${user}" method="post">
 	  <br>
 	  
-	  <div class="row">
-      <div class="col-md-4">
-        <span>Username</span>
-      </div>
-      <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{username}" placeholder="Email">
+	  <div class="row" style="text-align: center">
+      <div class="col-md-12">
+        <span>Registration Confirmed!</span>
       </div>
     </div>
 	  
-	  <div class="row">
-      <div class="col-md-4">
-        <span>Password</span>
-      </div>
-      <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{password}" placeholder="Password">
+	  <div class="row" style="text-align: center;">
+      <div class="col-md-12">
+        <span>Please Check your email for activation link.</span>
       </div>
     </div>
 		  <button class="btn-primary my-2 my-sm-0" type="submit">Submit</button>
-	  </form>
   </div>
 	<!-- End Container -->
 
