@@ -66,7 +66,7 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <input type="text" th:field="*{username}" placeholder="Email Address" value="">
+          <input type="text" th:field="*{username}" placeholder="Email Address" value="" required>
         </div>
       </div>
       <!-- End Email Section -->
@@ -76,7 +76,7 @@
           <span>Password<sup style="color: red;">*</sup></span>
         </div>
         <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{password}" placeholder="Password">
+          <input type="text" th:field="*{password}" placeholder="Password" required>
         </div>
       </div>
 
@@ -85,7 +85,7 @@
           <span>First Name<sup style="color: red;">*</sup></span>
         </div>
         <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{fname}" placeholder="Name Here">
+          <input type="text" th:field="*{fname}" placeholder="Name Here" required>
         </div>
       </div>
 
@@ -94,7 +94,7 @@
           <span>Last Name<sup style="color: red;">*</sup></span>
         </div>
         <div class="offset-2 col-md-6">
-          <input type="text" th:field="*{lname}" placeholder="Something">
+          <input type="text" th:field="*{lname}" placeholder="Something" required>
         </div>
       </div>
 

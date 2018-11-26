@@ -39,15 +39,14 @@
                   <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
               </li> -->
           </ul>
-          <form class="form-inline my-2 my-lg-0" action="search.html">
-              <input  class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/search}"  method="get">
+              <input name = "search" class="form-control mr-sm-2" type="search" value="" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
           </form>
       </div>
   </nav>
 
   <div class="container">
-    <form action="login.html">
       <br>
 	
 		<form action="#" th:action="@{/search}" th:object="${searchQuery}" method="get">
@@ -77,24 +76,17 @@
 			</div> -->
 		</div>
 
-            <div class="row">
+        </form>
+
+        <div class="row">
                 <!-- Need th:each here -->
                 <div class="col-sm-4" th:each="result: ${searchQuery}" style="text-align: center;">
                     <img th:attr="src=@{|images/${result.image}|}" style="width: 100%; max-height: 505px;"/>
                     <h3><div th:text="${result.movieTitle}"></div></h3>
-                    <button class="btn-active">Book Ticket</button>
+                    <a th:href="@{/getMovie/{id}(id = ${result.id})}"><button class="btn-active">Book Ticket</button></a>
                 </div>
                 <!-- End th:each       -->
             </div>
-
-
-
-		</form>
-
-
-      <div class="row">
-      </div>
-    </form>
   </div>
   <!-- End Container -->
 

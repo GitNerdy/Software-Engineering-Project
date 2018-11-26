@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <title>Book Ticket</title>
   <!-- Bootstrap -->
-  <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+  <link href="/css/bootstrap-4.0.0.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
 
 </head>
@@ -23,7 +23,7 @@
               <li class="nav-item active">
                   <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item" th:switch="${user.loggedIn}">
+              <!--<li class="nav-item" th:switch="${user.loggedIn}">
                   <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
               </li>
               <li class="nav-item" th:switch="${user.loggedIn}">
@@ -37,7 +37,7 @@
               </li>
               <li class="nav-item" th:switch="${user.loggedIn}">
                   <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-              </li>
+              </li> -->
           </ul>
           <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/search}"  method="get">
               <input name = "search" class="form-control mr-sm-2" type="search" value="" placeholder="Search" aria-label="Search">
@@ -46,13 +46,13 @@
       </div>
   </nav>
 
-  <div class="container">
+  <div class="container" th:object="${movie}">
 	  <br>
 	  
 	  <div class="row">
       <div class="col-sm-6">
-		  <div style="text-align: center;"><h1>Black Panther</h1></div>
-		  <span>T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past.</span>
+		  <div style="text-align: center;" ><h1 th:text="${movie.title}"></h1></div>
+		  <span th:text="${movie.synopsis}">T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past.</span>
 		  <h4><b>Show Times</b></h4>
 		  <a href="booking.html">
 		  <section>
@@ -66,10 +66,10 @@
 			</a>
       </div>
 		  <div class="col-sm-6">
-			<img src="images/61apTYdaRXL.jpg" alt="">
-			  <div><span><b>Director:</b> Ryan Coogler</span></div>
-			  <div><span><b>Writers:</b> Ryan Coogler, Joe Robert Cole</span></div>
-			  <div><span><b>Stars:</b> Chadwick Boseman, Michael B. Jordan, Lupita Nyong'o</span></div>
+              <img th:attr="src=@{|/images/${movie.image}|}" alt=""/>
+              <div><span><b>Director:</b></span> <span th:text="${movie.director}">Ryan Coogler</span></div>
+              <div><span><b>Producer:</b></span> <span th:text="${movie.producer}">Ryan Coogler, Joe Robert Cole</span></div>
+              <div><span><b>Cast:</b></span> <span th:text="${movie.cast}"> Boseman, Michael B. Jordan, Lupita Nyong'o</span></div>
       </div>
     </div>
 	  

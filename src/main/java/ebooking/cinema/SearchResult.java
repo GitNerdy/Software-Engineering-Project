@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResult {
+    String id;
     String movieTitle;
     String image;
     String cast;
@@ -63,6 +64,13 @@ public class SearchResult {
         this.producer = producer;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public List<SearchResult> searchMovies(String title) {
         List<SearchResult> results = new ArrayList<SearchResult>();
@@ -77,6 +85,7 @@ public class SearchResult {
             // Get attributes of Movies we need for MovieList and add them to ArrayList
             while (myResult.next()) {
                 SearchResult temp = new SearchResult();
+                temp.id = myResult.getString("movieID");
                 temp.movieTitle = myResult.getString("movieTitle");
                 temp.image = myResult.getString("image");
                 results.add(temp);
