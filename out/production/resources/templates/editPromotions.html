@@ -23,7 +23,7 @@
 			  <li class="nav-item active">
 				  <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
 			  </li>
-			  <li class="nav-item" th:switch="${user.loggedIn}">
+			  <!-- <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
@@ -37,7 +37,7 @@
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-			  </li>
+			  </li> -->
 		  </ul>
 		  <form class="form-inline my-2 my-lg-0" action="search.html">
 			  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -66,68 +66,46 @@
 	</div>
 	  
 	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-4" style="text-align: center;">
-			<span>AbfdG8df</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<span>15%</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<button class="btn-active">Delete</button>
-		</div>
-	</div>
-	  
-	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-4" style="text-align: center;">
-			<span>vnjasfe7</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<span>20%</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<button class="btn-active">Delete</button>
-		</div>
-	</div>
+
+	  <div th:each="promo : ${promoList}">
+			  <div class="row" style="text-align: center;">
+				<div class="col-sm-4" >
+					<span th:text="${promo.code}"></span>
+				</div>
+				<div class="col-sm-4" style="text-align: center;">
+					<span th:text="${promo.amount} + '%'"></span>
+				</div>
+				<div class="col-sm-4" style="text-align: center;">
+                    <a th:href="@{/deletePromo/{id}(id = ${promo.id})}"><button class="btn-active">Delete</button></a>
+				</div>
+			  </div>
+          <br>
+      </div>
 	  
 	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-4" style="text-align: center;">
-			<span>Zh6s0K42</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<span>25%</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<button class="btn-active">Delete</button>
-		</div>
-	</div>
-	  
-	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-4" style="text-align: center;">
-			<input type="text" placeholder="Promo Code">
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<select name="" id="">
-				<option value="">--Discount--</option>
-				<option value="">5%</option>
-				<option value="">10%</option>
-				<option value="">15%</option>
-				<option value="">20%</option>
-				<option value="">25%</option>
-				<option value="">30%</option>
-			</select>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<button class="btn-active">Add</button>
-		</div>
-	</div>
+
+      <form th:action="@{/insertPromo}" th:object="${newPromo}" method="post">
+          <div class="row" style="text-align: center;">
+
+            <div class="col-sm-4">
+                <input type="text" th:field="*{code}" placeholder="Promo Code">
+            </div>
+            <div class="col-sm-4">
+                <select name="" id="" th:field="*{amount}">
+                    <option value="">--Discount--</option>
+                    <option value="5">5%</option>
+                    <option value="10">10%</option>
+                    <option value="15">15%</option>
+                    <option value="20">20%</option>
+                    <option value="25">25%</option>
+                    <option value="30">30%</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn-active">Add</button>
+            </div>
+          </div>
+      </form>
 	  
 	<!-- End Container -->
 

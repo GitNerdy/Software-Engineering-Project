@@ -23,7 +23,7 @@
 			  <li class="nav-item active">
 				  <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
 			  </li>
-			  <li class="nav-item" th:switch="${user.loggedIn}">
+			  <!-- <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
@@ -37,7 +37,7 @@
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-			  </li>
+			  </li> -->
 		  </ul>
 		  <form class="form-inline my-2 my-lg-0" action="search.html">
 			  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -54,72 +54,44 @@
 	  </div>
 	  
 	<div class="row">
-		<div class="col-sm-4" style="text-align: center;">
+		<div class="col-sm-6" style="text-align: center;">
 			<b>Start Time</b>
 		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<b>End Time</b>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
+
+		<div class="col-sm-6" style="text-align: center;">
 			<b>Add/Delete</b>
 		</div>
 	</div>
 	  
 	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-4" style="text-align: center;">
-			<span>2:00</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<span>4:00</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<button class="btn-active">Delete</button>
-		</div>
-	</div>
-	  
-	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-4" style="text-align: center;">
-			<span>4:00</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<span>6:00</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<button class="btn-active">Delete</button>
-		</div>
-	</div>
+
+	  <!-- Generate Current ShowTimes -->
+	  <div th:each="showTime: ${showTimeList}">
+		  <div class="row" style="text-align: center;">
+			  <div class="col-sm-6">
+				  <span th:text="${showTime.startTime}"></span>
+			  </div>
+
+			  <div class="col-sm-6">
+				  <a th:href="@{/deleteShowTime/{id}(id = ${showTime.id})}"><button class="btn-active">Delete</button></a>
+			  </div>
+		  </div>
+		  <br>
+	  </div>
 	  
 	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-4" style="text-align: center;">
-			<span>6:00</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<span>8:00</span>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<button class="btn-active">Delete</button>
-		</div>
-	</div>
-	  
-	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-4" style="text-align: center;">
-			<input type="time" placeholder="Start Time">
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<input type="time" placeholder="End Time">
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<button class="btn-active">Add</button>
-		</div>
-	</div>
+
+	  <form th:action="@{/insertShowTime}" th:object="${newTime}" method="post">
+		  <div class="row" style="text-align: center;">
+			<div class="col-sm-6">
+				<input type="time" th:field="*{startTime}" placeholder="Start Time">
+			</div>
+
+			<div class="col-sm-6">
+				<button class="btn-active" type="submit">Add</button>
+			</div>
+		  </div>
+	  </form>
 	  
 	<!-- End Container -->
 

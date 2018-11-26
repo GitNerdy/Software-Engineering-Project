@@ -23,7 +23,7 @@
 			  <li class="nav-item active">
 				  <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
 			  </li>
-			  <li class="nav-item" th:switch="${user.loggedIn}">
+			   <!-- <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
@@ -37,10 +37,10 @@
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-			  </li>
+			  </li> -->
 		  </ul>
-		  <form class="form-inline my-2 my-lg-0" action="search.html">
-			  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		  <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/search}"  method="get">
+			  <input name = "search" class="form-control mr-sm-2" type="search" value="" placeholder="Search" aria-label="Search">
 			  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
 		  </form>
 	  </div>
@@ -54,7 +54,8 @@
 	  </div>
 	  
 	  <br>
-	  
+
+	  <!-- Header Row -->
 	  <div class="row" style="text-align: center;">
 	  	<div class="col-sm-3">
 			<h4><b>Poster</b></h4>
@@ -72,50 +73,50 @@
 		  
 		  </div>
 	  </div>
-	  
-	<div class="row" style="text-align: center;">
-		<div class="col-sm-3">
-			<img src="images/61apTYdaRXL.jpg" alt="" style="max-height: 250px;">
-		</div>
-		<div class="col-sm-3" style="transform: translateY(50%);">
-			<h4>Black Panther</h4>
-		</div>
-		
-	<div class="col-sm-2">
-	  <span>T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past.</span>
+	  <!-- End Header Row -->
+
+	  <!-- Pull the list of current movies from DB and display here -->
+	  <div th:each="movie: ${movieList}">
+	  	  <div class="row" style="text-align: center;">
+		  <div class="col-sm-3">
+			  <img th:attr="src=@{|images/${movie.image}|}" style="max-height: 250px;">
+		  </div>
+
+		  <div class="col-sm-3" style="transform: translateY(50%);">
+			  <h4 th:text="${movie.movieTitle}"></h4>
+		  </div>
+
+		  <div class="col-sm-2">
+			  <span th:text="${movie.synopsis}"></span>
+		  </div>
+
+		  <div class="col-sm-2">
+			  <div>
+				  <span><b>Director:</b></span>
+				  <span th:text="${movie.director}"></span>
+			  </div>
+
+			  <div>
+				  <span><b>Producer:</b></span>
+				  <span th:text="${movie.producer}"></span>
+			  </div>
+
+			  <div>
+				  <span><b>Cast:</b></span>
+				  <span th:text="${movie.cast}"></span>
+			  </div>
+		  </div>
+
+		  <div class="col-sm-2" style="transform: translateY(50%);">
+			  <a href="editMovie.html"><button class="btn-active">Edit Movie</button></a>
+		  </div>
 	  </div>
-	<div class="col-sm-2">
-	  <div><span><b>Director:</b> Ryan Coogler</span></div>
-			  <div><span><b>Writers:</b> Ryan Coogler, Joe Robert Cole</span></div>
-		<div><span><b>Stars:</b> Chadwick Boseman, Michael B. Jordan, Lupita Nyong'o</span></div>
+		  <br>
 	  </div>
-	<div class="col-sm-2" style="transform: translateY(50%);">
-	  <a href="editMovie.html"><button class="btn-active">Edit Movie</button></a>
-	  </div>
-	  </div>
-	  
-	  <br>
-	  
-	  <div class="row" style="text-align: center;">
-		<div class="col-sm-3">
-			<img src="images/the-pink-panther_a-G-6130343-0.jpg" alt="" style="max-height: 250px;">
-		</div>
-		<div class="col-sm-3" style="transform: translateY(50%);">
-			<h4>Pink Panther</h4>
-		</div>
-		
-	<div class="col-sm-2">
-	  <span>I honestly have no idea what this movie is about. It's basically just a guy being weird and someone saving the day, I think?</span>
-	  </div>
-	<div class="col-sm-2">
-	  <div><span><b>Director:</b> Ryan Coogler</span></div>
-			  <div><span><b>Writers:</b> Ryan Coogler, Joe Robert Cole</span></div>
-		<div><span><b>Stars:</b> Chadwick Boseman, Michael B. Jordan, Lupita Nyong'o</span></div>
-	  </div>
-	<div class="col-sm-2" style="transform: translateY(50%);">
-	  <a href="editMovie.html"><button class="btn-active">Edit Movie</button></a>
-	  </div>
-	  </div>
+	  <!-- End Current Movie List -->
+
+	  <!-- Add Movie Button -->
+
 	  
   </div>
 	<!-- End Container -->

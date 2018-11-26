@@ -23,7 +23,7 @@
 			  <li class="nav-item active">
 				  <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
 			  </li>
-			  <li class="nav-item" th:switch="${user.loggedIn}">
+			  <!-- <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
@@ -37,7 +37,7 @@
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-			  </li>
+			  </li> -->
 		  </ul>
 		  <form class="form-inline my-2 my-lg-0" action="search.html">
 			  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -63,26 +63,22 @@
 	</div>
 	  
 	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-6" style="text-align: right;">
-			<b>Tripp Guinn</b>
-		</div>
-		<div class="col-sm-6">
-			<button class="btn-active" style="width: 35%;">Suspend</button>
-		</div>
-	</div>
-	  
-	  <br>
-	  
-	  <div class="row">
-		<div class="col-sm-6" style="text-align: right;">
-			<b>Other Person</b>
-		</div>
-		<div class="col-sm-6">
-			<button class="btn-active" style="width: 35%;">Activate</button>
-		</div>
-	</div>
+
+	  <div th:each="user: ${userList}">
+		  <div class="row">
+			  <div class="col-sm-6" style="text-align: right;">
+				  <b th:text="${user.fname} + ' ' + ${user.lname}"></b>
+			  </div>
+
+			  <div class="col-sm-6" th:switch="${user.status}">
+				  <a th:case="active" th:href="@{/suspendAccount/{id}(id = ${user.id})}"><button class="btn-active" style="width: 35%;">Suspend</button></a>
+				  <a th:case="suspended" th:href="@{/activateAccount/{id}(id = ${user.id})}"><button class="btn-active" style="width: 35%;">Activate</button></a>
+
+			  </div>
+		  </div>
+		  <br>
+	  </div>
+
   </div>
 	<!-- End Container -->
 

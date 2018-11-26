@@ -6,14 +6,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
+    String id;
     String username;
     String password;
     String email;
     String fname;
     String lname;
+    String status;
     boolean loggedIn = false;
     boolean isAdmin = false;
 
@@ -30,6 +34,13 @@ public class User {
 
     int promo = 0;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -151,6 +162,14 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public boolean login() {
                 try {
                     Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
@@ -211,5 +230,51 @@ public class User {
 
     public void logout() {
         this.loggedIn = false;
+    }
+
+    public List<User> getUsers() {
+        List<User> results = new ArrayList<User>();
+
+        try {
+
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
+            Statement myStatement = myConn.createStatement();
+            String sql = "SELECT * FROM user ";
+            ResultSet myResult = myStatement.executeQuery(sql);
+
+
+            while (myResult.next()) {
+                User temp = new User();
+                temp.id = myResult.getString("userID");
+                temp.fname = myResult.getString("firstName");
+                temp.lname = myResult.getString("lastName");
+                temp.status = myResult.getString("status");
+                results.add(temp);
+            }
+
+        }
+
+        catch(Exception  ex){
+            ex.printStackTrace();
+        }
+
+        return results;
+    }
+
+    public void updateStatus(String id, String status) {
+        try {
+
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
+            Statement myStatement = myConn.createStatement();
+            String sql = "UPDATE user SET status = '" + status + "' WHERE userID = '" + id + "'";
+            myStatement.executeUpdate(sql);
+
+
+
+        }
+
+        catch(Exception  ex){
+            ex.printStackTrace();
+        }
     }
 }
