@@ -2,7 +2,9 @@ package ebooking.cinema;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UpdateController {
@@ -21,5 +23,12 @@ public class UpdateController {
         UDO.updateStatus(id,"active");
 
         return "redirect:/editUsers";
+    }
+
+    @PostMapping("updatMovie/{id}")
+    public String updateMovie(@PathVariable String id, @ModelAttribute Movie movie) {
+        movie.updateMovie();
+
+        return "redirect:/editMovie";
     }
 }

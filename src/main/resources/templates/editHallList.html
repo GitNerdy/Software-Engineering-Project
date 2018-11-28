@@ -23,7 +23,7 @@
 			  <li class="nav-item active">
 				  <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
 			  </li>
-			  <li class="nav-item" th:switch="${user.loggedIn}">
+			  <!-- <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
@@ -37,7 +37,7 @@
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-			  </li>
+			  </li> -->
 		  </ul>
 		  <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/search}"  method="get">
 			  <input name = "search" class="form-control mr-sm-2" type="search" value="" placeholder="Search" aria-label="Search">
@@ -54,68 +54,68 @@
 	  </div>
 	  
 	  <br>
-	  
-	  <div class="row">
-	  	<div class="col-sm-12">
-		  	<h4>Hall A</h4>
+
+	  <div th:each="hall: ${hallList}">
+		  <div class="row">
+			  <div class="col-sm-12">
+				  <h4 th:text="${hall.name}"></h4>
+			  </div>
 		  </div>
+
+		  <hr>
+
+		  <div class="row">
+			  <div class="col-sm-4" style="text-align: center;">
+				  <b>Show Time</b>
+			  </div>
+			  <div class="col-sm-4" style="text-align: center;">
+				  <b>Movie</b>
+			  </div>
+			  <div class="col-sm-4" style="text-align: center;">
+				  <b>Add/Delete</b>
+			  </div>
+		  </div>
+
+
+		  <div th:each="showing: ${showingList}" th:switch="${hall.id}">
+			  <div class="row" style="text-align: center;" th:case="${showing.hallID}">
+				  <div class="col-sm-4">
+					  <span th:text="${showing.showTime}"></span>
+				  </div>
+				  <div class="col-sm-4">
+					  <span th:text="${showing.movieName}"></span>
+				  </div>
+				  <div class="col-sm-4">
+					  <a th:href="@{/deleteShowing/{id}(id = ${showing.id})}"><button class="btn-active">Delete</button></a>
+				  </div>
+			  </div>
+			  <br>
+		  </div>
+
+		  <form th:action="@{/insertShowing/{id}(id = ${hall.id})}" th:object="${newShowing}" method="post">
+			  <div class="row">
+				  <div class="col-sm-4" style="text-align: center;">
+					  <select th:field="*{showTimeID}" name="showTime">
+						  <option th:value="0">Select ShowTime</option>
+						  <option th:each="showTime: ${showTimeList}" th:value="${showTime.id}" th:text="${showTime.startTime}"></option>
+					  </select>
+				  </div>
+
+				  <div class="col-sm-4" style="text-align: center;">
+					  <select th:field="*{movieID}" name="movie">
+						  <option th:value="0">Select Movie</option>
+						  <option th:each="movie: ${movieList}" th:value="${movie.id}" th:text="${movie.movieTitle}"></option>
+					  </select>
+				  </div>
+
+				  <div class="col-sm-4" style="text-align: center;">
+					  <button class="btn-active" type="submit">Add</button>
+				  </div>
+			  </div>
+		  </form>
 	  </div>
-	  
-	  <hr>
-	  
-	<div class="row">
-		<div class="col-sm-4" style="text-align: center;">
-			<b>Show Time</b>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<b>Movie</b>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<b>Add/Delete</b>
-		</div>
-	</div>
-	  
-	  <br>
-	  
-	  	<div class="row">
-			<div class="col-sm-4" style="text-align: center;">
-				<span>2:00</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<span>Black Panther</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<button class="btn-active">Delete</button>
-			</div>
-		</div>
-	  
-	  <br>
-	  
-	  	<div class="row">
-			<div class="col-sm-4" style="text-align: center;">
-				<span>4:00</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<span>Pink Panther</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<button class="btn-active">Delete</button>
-			</div>
-		</div>
-	  
-	  <br>
-	  
-	  	<div class="row">
-			<div class="col-sm-4" style="text-align: center;">
-				<span>6:00</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<span>Venom</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<button class="btn-active">Delete</button>
-			</div>
-		</div>
+
+
 	  
 	  <br>
 	  
@@ -130,7 +130,7 @@
 				</select>
 			</div>
 			<div class="col-sm-4" style="text-align: center;">
-				<select name="movie" id="">
+				<select name="movie">
 					<option value=""></option>
 					<option value="blkPanther">Black Panther</option>
 					<option value="avenger">Avengers: IW</option>
@@ -142,118 +142,6 @@
 				<button class="btn-active">Add</button>
 			</div>
 		</div>
-	  
-	  <br>
-	  
-	  <div class="row">
-	  	<div class="col-sm-12">
-		  	<h4>Hall B</h4>
-		  </div>
-	  </div>
-	  
-	  <hr>
-	  
-	<div class="row">
-		<div class="col-sm-4" style="text-align: center;">
-			<b>Show Time</b>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<b>Movie</b>
-		</div>
-		<div class="col-sm-4" style="text-align: center;">
-			<b>Add/Delete</b>
-		</div>
-	</div>
-	  
-	  <br>
-	  
-	  	<div class="row">
-			<div class="col-sm-4" style="text-align: center;">
-				<span>2:00</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<span>Black Panther</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<button class="btn-active">Delete</button>
-			</div>
-		</div>
-	  
-	  <br>
-	  
-	  	<div class="row">
-			<div class="col-sm-4" style="text-align: center;">
-				<span>4:00</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<span>Pink Panther</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<button class="btn-active">Delete</button>
-			</div>
-		</div>
-	  
-	  <br>
-	  
-	  	<div class="row">
-			<div class="col-sm-4" style="text-align: center;">
-				<span>6:00</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<span>Venom</span>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<button class="btn-active">Delete</button>
-			</div>
-		</div>
-	  
-	  <br>
-	  
-	  	<div class="row">
-			<div class="col-sm-4" style="text-align: center;">
-				<select name="movie" id="">
-					<option value=""></option>
-					<option value="2">2:00</option>
-					<option value="4">4:00</option>
-					<option value="6">6:00</option>
-					<option value="8">8:00</option>
-				</select>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<select name="movie" id="">
-					<option value=""></option>
-					<option value="blkPanther">Black Panther</option>
-					<option value="avenger">Avengers: IW</option>
-					<option value="pnkPanther">Pink Panther</option>
-					<option value="Venom">Venom</option>
-				</select>
-			</div>
-			<div class="col-sm-4" style="text-align: center;">
-				<button class="btn-active">Add</button>
-			</div>
-		</div>
-	  
-	  <br>
-	  
-	  <div class="row">
-	  	<div class="col-sm-12">
-		  	<h4>Add Hall</h4>
-		  </div>
-	  </div>
-	  
-	  <hr>
-	  
-	  <div class="row">
-	  	<div class="col-sm-4" style="text-align: center;">
-		  	<b>Hall Name</b>
-		  </div>
-	  	<div class="col-sm-4" style="text-align: center;">
-		  	<input type="text" placeholder="Hall Name">
-		  </div>
-	  	<div class="col-sm-4" style="text-align: center;">
-		  <button class="btn-active">Add Hall</button>
-		  </div>
-	  </div>
 	  
 	</div>
 	  

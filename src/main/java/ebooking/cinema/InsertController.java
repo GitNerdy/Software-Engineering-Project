@@ -2,6 +2,7 @@ package ebooking.cinema;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.swing.*;
@@ -23,5 +24,13 @@ public class InsertController {
         PDO.insertPromo(promo);
 
         return "redirect:/editPromotions";
+    }
+
+    @PostMapping("/insertShowing/{id}")
+    public String addShowing(@ModelAttribute MovieShowing showing, @PathVariable String id) {
+        MovieShowing MSDO = new MovieShowing();
+        MSDO.insertShowing(showing, id);
+
+        return "redirect:/editHalls";
     }
 }
