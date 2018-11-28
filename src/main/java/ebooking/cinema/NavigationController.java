@@ -11,7 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@Scope("session")
 public class NavigationController {
+
+    User user = new User();
 
     @GetMapping("/index")
     public ModelAndView goHome(@ModelAttribute("user") User user, Model model) {
@@ -87,6 +90,30 @@ public class NavigationController {
         return mav;
     }
 
+    @GetMapping("/editHalls")
+    public ModelAndView showHallList(Model model) {
+
+        model.addAttribute("newShowing", new MovieShowing());
+
+        Hall tempHall = new Hall();
+        MovieShowing tempShowing = new MovieShowing();
+        SearchResult tempMovie = new SearchResult();
+        ShowTime tempShowTime = new ShowTime();
+
+        List<Hall> hallResults = tempHall.getHalls();
+        List<MovieShowing> showingResults = tempShowing.getShowings();
+        List<SearchResult> movieResults = tempMovie.getMovieList();
+        List<ShowTime>  showTimeResults = tempShowTime.getShowTimes();
+
+        ModelAndView mav = new ModelAndView("editHallList");
+        mav.addObject("hallList", hallResults);
+        mav.addObject("showingList", showingResults);
+        mav.addObject("movieList", movieResults);
+        mav.addObject("showTimeList", showTimeResults);
+
+        return mav;
+    }
+
     @GetMapping("/getMovie/{id}")
     public ModelAndView movieDetail(@PathVariable String id) {
 
@@ -99,4 +126,28 @@ public class NavigationController {
         return mav;
     }
 
+    @GetMapping("/getEditMovie/{id}")
+    public ModelAndView editMovie(@PathVariable String id, Model model) {
+
+        Movie newMovie = new Movie();
+
+        Movie result = new Movie();
+        result = result.getMovie(id);
+
+        newMovie.title = result.title;
+        newMovie.synopsis = result.synopsis;
+        newMovie.director = result.director;
+        newMovie.producer = result.producer;
+        newMovie.cast = result.cast;
+        newMovie.image = result.image;
+        newMovie.genre = result.genre;
+
+        model.addAttribute("newMovie", newMovie);
+
+
+        ModelAndView mav = new ModelAndView("editMovie");
+        mav.addObject("movie", result);
+
+        return mav;
+    }
 }

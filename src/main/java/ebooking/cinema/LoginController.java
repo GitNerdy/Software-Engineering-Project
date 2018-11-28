@@ -3,12 +3,10 @@ package ebooking.cinema;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@Scope("session")
+@SessionAttributes("user")
 public class LoginController {
 
     @GetMapping("/login")
@@ -19,8 +17,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String userSubmit(@ModelAttribute("user") User user) {
-        System.out.println(user.username);
-        System.out.println(user.password);
+
         if (user.login()) {
             //System.out.println("User status: " + user.loggedIn);
             return "index";

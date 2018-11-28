@@ -15,6 +15,7 @@ public class Movie {
     String synopsis;
     String image;
     String showTime;
+    String genre;
 
     public String getId() {
         return id;
@@ -95,6 +96,7 @@ public class Movie {
                 result.id = myResult.getString("movieID");
                 result.title = myResult.getString("movieTitle");
                 result.cast = myResult.getString("cast");
+                result.genre = myResult.getString("genre");
                 result.director = myResult.getString("director");
                 result.producer = myResult.getString("producer");
                 result.synopsis = myResult.getString("synopsis");
@@ -108,5 +110,27 @@ public class Movie {
         }
 
         return result;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void updateMovie() {
+        try {
+
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
+            Statement myStatement = myConn.createStatement();
+            String sql = "UPDATE movie SET movieTitle = '" + this.title + "', cast = '" + this.cast + "', director = '" + this.director + "', synopsis = '" + this.synopsis + "', genre = '" + this.genre + "', producer = '" + this.producer + "' WHERE userID = '" + this.id + "'";
+            myStatement.executeUpdate(sql);
+        }
+
+        catch(Exception  ex){
+            ex.printStackTrace();
+        }
     }
 }

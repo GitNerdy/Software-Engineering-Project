@@ -23,4 +23,12 @@ public class DeleteController {
 
         return "redirect:/editPromotions";
     }
+
+    @GetMapping("/deleteShowing/{id}")
+    public String deleteShowing(@PathVariable String id) {
+        MovieShowing MSDO = new MovieShowing();
+        MSDO.deleteShowing(id);
+
+        return "redirect:/editHalls";
+    }
 }

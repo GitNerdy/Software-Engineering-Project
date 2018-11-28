@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login</title>
   <!-- Bootstrap -->
-  <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+  <link href="/css/bootstrap-4.0.0.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
 
 </head>
@@ -23,7 +23,7 @@
 			  <li class="nav-item active">
 				  <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
 			  </li>
-			  <li class="nav-item" th:switch="${user.loggedIn}">
+			  <!-- <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
@@ -37,7 +37,7 @@
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-			  </li>
+			  </li> -->
 		  </ul>
 		  <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/search}"  method="get">
 			  <input name = "search" class="form-control mr-sm-2" type="search" value="" placeholder="Search" aria-label="Search">
@@ -48,7 +48,8 @@
 
   <div class="container">
 	  <br>
-	  
+
+	  <form th:action="@{/updateMovie/{id}(id = ${movie.id})}" th:object="${newMovie}" method="post">
 	  <div class="row">
 	  	<div class="col-sm-6">
 			<div class="row">
@@ -56,7 +57,7 @@
 					<b>Movie Title</b>
 				</div>
 				<div class="col-sm-6" style="width: auto;">
-					<input type="text" placeholder="Movie Title" style="border: solid;">
+					<input type ="text" th:field="*{title}"  style="border: solid;">
 				</div>
 			</div>
 			
@@ -67,7 +68,7 @@
 					<b>Movie Summary</b>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" placeholder="Movie Summary" style="height: 250px; border: solid;">
+					<input type="text" th:field="*{synopsis}" placeholder="Movie Summary" style="height: 250px; border: solid;">
 				</div>
 			</div>
 			
@@ -78,7 +79,7 @@
 					<b>Genre</b>
 				</div>
 				<div class="col-sm-6">
-					<select name="genre" id="">
+					<select th:field="*{genre}" name="genre" id="">
 						<option value=""></option>
 						<option value="horror">Horror</option>
 						<option value="action">Action</option>
@@ -98,7 +99,7 @@
 					</div>
 					
 					<div class="col-sm-3">
-						<img src="images/61apTYdaRXL.jpg" alt="" style="max-height: 250px; width: 100%;">
+						<img th:attr="src=@{|images/*{image}|}" alt="" style="max-height: 250px; width: 100%;">
 					</div>
 					
 					<div class="col-sm-6" style="width: auto;">
@@ -113,29 +114,12 @@
 						<b>Director:</b>
 					</div>
 			  		<div class="col-sm-6">
-						<input type="text" placeholder="Director Name" style="border: solid;">
+						<input type="text" th:field="*{director}" style="border: solid;">
 					</div>
 			  	</div>
 			  
 			  <br>
-			  
-			  <div class="row">
-				  <div class="col-sm-12">
-			  	<b>Writers</b>
-					  </div>
-			  </div>
-			  
-			  <br>
-			  
-			  <div class="row"><br>
-			  	<div class="col-sm-6">Tripp Guinn</div>
-			  	<div class="col-sm-6"><button class="btn-active">Delete</button></div>
-			  </div>
-			  
-			  <div class="row"><br>
-			  	<div class="col-sm-6"><input type="text" placeholder="Writer Name" style="border: solid;"></div>
-			  	<div class="col-sm-6"><button class="btn-active">Add</button></div>
-			  </div>
+
 		  </div>
 	  </div>
 	  
@@ -148,33 +132,13 @@
 	  </div>
 	  
 	  <br>
+
 	  
 	  <div class="row">
-	  	<div class="col-sm-4"><b>First Name</b></div>
-	  	<div class="col-sm-4"><b>Last Name</b></div>
-	  	<div class="col-sm-4"><b>Add/Delete</b></div>
+		  <input type="text" th:field="*{cast}" style="border: solid;">
+		  <div class="col-sm-4"><button class="btn-active">Add</button></div>
 	  </div>
-	  
-	  <br>
-	  
-	  <div class="row">
-	  	<div class="col-sm-4">Chadwick</div>
-	  	<div class="col-sm-4">Boseman</div>
-	  	<div class="col-sm-4"><button class="btn-active">Delete</button></div>
-	  </div>
-	  
-	  <div class="row">
-	  	<div class="col-sm-4">Tripp</div>
-	  	<div class="col-sm-4">Guinn</div>
-	  	<div class="col-sm-4"><button class="btn-active">Delete</button></div>
-	  </div>
-	  
-	  <div class="row">
-	  	<div class="col-sm-4"><input type="text" placeholder="First Name" style="border: solid;"></div>
-	  	<div class="col-sm-4"><input type="text" placeholder="Last Name" style="border: solid;"></div>
-	  	<div class="col-sm-4"><button class="btn-active">Add</button></div>
-	  </div>
-	  
+	  </form>
   </div>
 	<!-- End Container -->
 

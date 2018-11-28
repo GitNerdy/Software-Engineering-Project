@@ -21,10 +21,11 @@ public class RegistrationController {
     @PostMapping("/register")
     public String registerSubmit(@ModelAttribute User user) {
         user.register();
-        System.out.println(user.password);
+        //Email.sendMail(user.email);
+        /* System.out.println(user.password);
         System.out.println(user.email);
         System.out.println(user.fname);
-        System.out.println(user.lname);
+        System.out.println(user.lname); */
         user.loggedIn = true;
         return "index";
     }

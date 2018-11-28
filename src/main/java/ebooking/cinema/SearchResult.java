@@ -114,6 +114,7 @@ public class SearchResult {
 
             while (myResult.next()) {
                 SearchResult temp = new SearchResult();
+                temp.id = myResult.getString("movieID");
                 temp.movieTitle = myResult.getString("movieTitle");
                 temp.image = myResult.getString("image");
                 temp.cast = myResult.getString("cast");
