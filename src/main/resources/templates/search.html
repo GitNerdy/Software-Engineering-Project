@@ -23,7 +23,7 @@
               <li class="nav-item active">
                   <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
               </li>
-              <!--<li class="nav-item" th:switch="${user.loggedIn}">
+              <li class="nav-item" th:switch="${user.loggedIn}">
                   <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
               </li>
               <li class="nav-item" th:switch="${user.loggedIn}">
@@ -37,7 +37,7 @@
               </li>
               <li class="nav-item" th:switch="${user.loggedIn}">
                   <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-              </li> -->
+              </li>
           </ul>
           <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/search}"  method="get">
               <input name = "search" class="form-control mr-sm-2" type="search" value="" placeholder="Search" aria-label="Search">

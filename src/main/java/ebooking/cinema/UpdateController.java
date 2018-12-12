@@ -25,10 +25,12 @@ public class UpdateController {
         return "redirect:/editUsers";
     }
 
-    @PostMapping("updatMovie/{id}")
+    @PostMapping("/updateMovie/{id}")
     public String updateMovie(@PathVariable String id, @ModelAttribute Movie movie) {
         movie.updateMovie();
 
-        return "redirect:/editMovie";
+        String page = "redirect:/getEditMovie/{id}";
+
+        return page;
     }
 }

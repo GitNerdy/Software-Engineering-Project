@@ -23,7 +23,7 @@
 			  <li class="nav-item active">
 				  <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
 			  </li>
-			  <!-- <li class="nav-item" th:switch="${user.loggedIn}">
+			  <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
@@ -37,7 +37,7 @@
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-			  </li> -->
+			  </li>
 		  </ul>
 		  <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/search}"  method="get">
 			  <input name = "search" class="form-control mr-sm-2" type="search" value="" placeholder="Search" aria-label="Search">
@@ -93,7 +93,7 @@
 		  </div>
 		  
 		  <div class="col-sm-6">
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-sm-3">
 						<b>Movie Poster</b>
 					</div>
@@ -105,7 +105,17 @@
 					<div class="col-sm-6" style="width: auto;">
 						<input type="file">
 					</div>
-				</div>
+				</div> -->
+
+			  <div class="row">
+				  <div class="col-sm-3">
+					  <b>Image</b>
+				  </div>
+
+				  <div class="col-sm-6">
+					  <input type="text" th:field="*{image}">
+				  </div>
+			  </div>
 			  
 			  <br>
 			  
@@ -136,7 +146,7 @@
 	  
 	  <div class="row">
 		  <input type="text" th:field="*{cast}" style="border: solid;">
-		  <div class="col-sm-4"><button class="btn-active">Add</button></div>
+		  <div class="col-sm-4"><button class="btn-active">Update</button></div>
 	  </div>
 	  </form>
   </div>

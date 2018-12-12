@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 public class Booking {
     int bookingID;
@@ -17,46 +18,59 @@ public class Booking {
     public int getBookingID(){
         return bookingID;
     }
+
     public void setBookingID(int bookingID){
         this.bookingID = bookingID;
     }
+
     public int getUserID(){
         return userID;
     }
+
     public void setUserID(int userID){
         this.userID = userID;
     }
+
     public int getPaymentID(){
         return paymentID;
     }
+
     public void setPaymentID(int paymentID){
         this.paymentID = paymentID;
     }
+
     public int getNumTickets(){
         return numTickets;
     }
+
     public void setNumTickets(int numTickets){
         this.numTickets = numTickets;
     }
+
     public float getTotalCost(){
         return totalCost;
     }
 
-    public void setTotalCost(int totalCost){
+    public void setTotalCost(float totalCost){
         this.totalCost = totalCost;
     }
+
     public int getPromoID(){
         return promoID;
     }
+
     public void setPromoID(int promoID){
         this.promoID = promoID;
     }
+
     public float getPromoPercentage() {
         return promoPercentage;
     }
+
     public void setPromoPercentage(float promoPercentage) {
         this.promoPercentage = promoPercentage;
     }
+
     public void makeBooking() {
         try {
             int id = 0;
@@ -81,6 +95,7 @@ public class Booking {
             ex.printStackTrace();
         }
     }
+
     public void updateTotalCost(int promoID){
         this.promoID = promoID;
         System.out.print("PromoID: " + this.promoID);
@@ -104,4 +119,16 @@ public class Booking {
         }
     }
 
+    public static float getTotalCost(List<Ticket> ticketList, float discount) {
+        float totalCost = 0;
+        float percentOff = discount / 100;
+
+        for (Ticket ticket : ticketList) {
+            totalCost += ticket.cost;
+        }
+
+        totalCost = totalCost - (totalCost * percentOff);
+
+        return totalCost;
+    }
 }

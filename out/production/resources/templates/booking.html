@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login</title>
   <!-- Bootstrap -->
-  <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+  <link href="/css/bootstrap-4.0.0.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
 
 </head>
@@ -50,7 +50,7 @@
 	  <br>
 	  
 	  	<div class="row">
-	  		<h4>2:00 Showing for Black Panther</h4>
+	  		<!-- <h4>2:00 Showing for Black Panther</h4> -->
 	  	</div>
 	  
 	  	<hr>
@@ -62,78 +62,78 @@
 	  	</div>
 	  
 	  <br>
-	  
-	  <div class="row">
-			<div class="col-sm-4" style="text-align: center;"><b>Child</b></div>
-			<div class="col-sm-4" style="text-align: center;"><b>$5.99</b></div>
-			<div class="col-sm-4" style="text-align: center;">
-		  		<select name="num" id="">
-					<option value="0">0</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-				</select>
-		  	</div>
-	  	</div>
-	  
-	  	  <br>
-	  
-	  <div class="row">
-			<div class="col-sm-4" style="text-align: center;"><b>Adult</b></div>
-			<div class="col-sm-4" style="text-align: center;"><b>$7.99</b></div>
-			<div class="col-sm-4" style="text-align: center;">
-		  		<select name="num" id="">
-					<option value="0">0</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-				</select>
-		  	</div>
-	  	</div>
-	  
-	  	  <br>
-	  
-	  <div class="row">
-			<div class="col-sm-4" style="text-align: center;"><b>Senior</b></div>
-			<div class="col-sm-4" style="text-align: center;"><b>$5.99</b></div>
-			<div class="col-sm-4" style="text-align: center;">
-		  		<select name="num" id="">
-					<option value="0">0</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-				</select>
-		  	</div>
-	  	</div>
-	  
-	  <hr>
-	  
-	  <div class="row">
-	  	<div class="col-sm-4 offset-8" style="text-align: center;">
-		  Total Cost: [Price Here] <a href="seating.html"><button class="btn-active">Pick Seating</button></a>
+	  <form th:action="@{/getSeatsPage/{id}(id = ${showingID})}" th:object="${ticket}" method="post">
+		  <div th:each="ageGroup: ${ageGroupList}">
+			  <div class="row" style="text-align: center;">
+					<div class="col-sm-4" th:text="${ageGroup.description}"><b>Description</b></div>
+					<div class="col-sm-4" th:text="${ageGroup.price}"><b>Price</b></div>
+
+					<div th:switch = "${ageGroup.id}">
+						<div  th:case="1" class = "col-sm-4">
+							<select th:field = "*{numChildTicket}">
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div>
+
+						<div  th:case="2" class = "col-sm-4">
+							<select th:field = "*{numAdultTicket}">
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div>
+
+						<div  th:case="3" class = "col-sm-4">
+							<select th:field = "*{numSeniorTicket}">
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div>
+					</div>
+
+				  <br>
+				</div>
+			  <br>
 		  </div>
-	  </div>
+
+			  <br>
+
+
+		  <hr>
+
+		  <div class="row">
+			<div class="col-sm-4 offset-8" style="text-align: center;">
+			  <a href="seating.html"><button class="btn-active">Pick Seating</button></a>
+			  </div>
+		  </div>
+	  </form>
   </div>
 	<!-- End Container -->
 

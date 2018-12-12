@@ -23,7 +23,7 @@
               <li class="nav-item active">
                   <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
               </li>
-              <!--<li class="nav-item" th:switch="${user.loggedIn}">
+              <li class="nav-item" th:switch="${user.loggedIn}">
                   <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
               </li>
               <li class="nav-item" th:switch="${user.loggedIn}">
@@ -37,7 +37,7 @@
               </li>
               <li class="nav-item" th:switch="${user.loggedIn}">
                   <a th:case="true" class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-              </li> -->
+              </li>
           </ul>
           <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/search}"  method="get">
               <input name = "search" class="form-control mr-sm-2" type="search" value="" placeholder="Search" aria-label="Search">
@@ -54,16 +54,11 @@
 		  <div style="text-align: center;" ><h1 th:text="${movie.title}"></h1></div>
 		  <span th:text="${movie.synopsis}">T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past.</span>
 		  <h4><b>Show Times</b></h4>
-		  <a href="booking.html">
+
 		  <section>
-		  	<button class="btn-active" type="submit" >2:00</button>
-			<button class="btn-active my-2 my-sm-0" type="submit">4:00</button>
-			<button class="btn-active my-2 my-sm-0" type="submit">6:00</button>
-			<button class="btn-active my-2 my-sm-0" type="submit">8:00</button>
-			<button class="btn-active my-2 my-sm-0" type="submit">10:00</button>
-			<button class="btn-active my-2 my-sm-0" type="submit">12:00</button>
+              <a th:each=" showing: ${showingList}" th:href="@{/getTicketsPage/{id}(id = ${showing.id})}"><button class="btn-active my-2 my-sm-0" type="submit" th:text="${showing.showTime}">4:00</button></a>
 		  </section>
-			</a>
+
       </div>
 		  <div class="col-sm-6">
               <img th:attr="src=@{|/images/${movie.image}|}" alt=""/>

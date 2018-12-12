@@ -47,7 +47,7 @@
   </nav>
 
   <div class="container">
-    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+    <form action="#" th:action="@{/register}" th:object="${register}" method="post">
 
       <div class="row">
         <div class="col-xs-12">
@@ -241,9 +241,9 @@
         <div class="col-md-4">
           <span>Register for Promotion</span>
         </div>
-        <div class="offset-2 col-md-6">
+        <!-- <div class="offset-2 col-md-6">
           <input type="checkbox" th:field="*{promo}" value=1>
-        </div>
+        </div> -->
       </div>
       <button class="btn-primary my-2 my-sm-0" type="submit">Submit</button>
     </form>

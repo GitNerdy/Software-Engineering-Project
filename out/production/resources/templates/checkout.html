@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login</title>
   <!-- Bootstrap -->
-  <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+  <link href="/css/bootstrap-4.0.0.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
 
 </head>
@@ -54,45 +54,54 @@
 	  	</div>
 	  
 	  	<hr>
-	  
+
 		<div class="row">
-			<div class="col-sm-2" style="text-align: center;"><b>Movie</b></div>
-			<div class="col-sm-2" style="text-align: center;"><b>Age</b></div>
-			<div class="col-sm-2" style="text-align: center;"><b>Cost</b></div>
-			<div class="col-sm-2" style="text-align: center;"><b>Qty</b></div>
-			<div class="col-sm-2" style="text-align: center;"><b>Total</b></div>
-			<div class="col-sm-2" style="text-align: center;"><b>Delete</b></div>
+			<div class="col-sm-3" style="text-align: center;"><b>Movie</b></div>
+			<div class="col-sm-3" style="text-align: center;"><b>Age</b></div>
+			<div class="col-sm-3" style="text-align: center;"><b>Cost</b></div>
+			<div class="col-sm-3" style="text-align: center;"><b>Delete</b></div>
 	  	</div>
 	  
 	  <br>
-	  
-	  	<div class="row">
-			<div class="col-sm-2" style="text-align: center;">Venom</div>
-			<div class="col-sm-2" style="text-align: center;">Child</div>
-			<div class="col-sm-2" style="text-align: center;">$5.99</div>
-			<div class="col-sm-2" style="text-align: center;">2</div>
-		  	<div class="col-sm-2" style="text-align: center;">$11.98</div>
-			<div class="col-sm-2" style="text-align: center;"><button class="btn-active">Delete</button></div>
+
+	  <div th:each="ticket: ${ticketList}">
+	  	<div class="row" style="text-align: center;">
+			<div class="col-sm-3" th:text="${movieTitle}">Venom</div>
+			<div class="col-sm-3" th:text="${ticket.ageGroup}">Child</div>
+		  	<div class="col-sm-3" th:text="${ticket.cost}">$11.98</div>
+			<div class="col-sm-3" >
+				<a th:href="@{/deleteTicket/{id}(id = ${ticket.ticketID})}"><button class="btn-active">Delete</button></a>
+			</div>
 	  	</div>
 	  
 	  	  <br>
-	  
-	  <div class="row">
-			<div class="col-sm-2" style="text-align: center;">Black Panther</div>
-			<div class="col-sm-2" style="text-align: center;">Adult</div>
-			<div class="col-sm-2" style="text-align: center;">$7.99</div>
-			<div class="col-sm-2" style="text-align: center;">1</div>
-		  	<div class="col-sm-2" style="text-align: center;">$7.99</div>
-		  <div class="col-sm-2" style="text-align: center;"><button class="btn-active">Delete</button></div>
-	  	</div>
-	  
-	  	  <br>
-	  
+	  </div>
+
 	  <hr>
+
+	  <div th:switch="${promoUsed}">
+	  <form th:case="false" th:action="@{/applyPromo/{id}(id = ${showingID})}" th:object="${promo}" method="post">
+		  <div class="row">
+			  <div class="col-sm-6" style="text-align: right;">
+				  <h3>Promo Code:</h3>
+			  </div>
+
+			  <div class="col-sm-3">
+				  <input th:field="*{code}" type="text">
+			  </div>
+
+			  <div class="col-sm-3">
+				  <button class="btn-active" type="submit">Apply Promo</button>
+			  </div>
+		  </div>
+		  <hr>
+	  </form>
+
+	  </div>
 	  
 	  <div class="row">
 	  	<div class="col-sm-4 offset-8" style="text-align: center;">
-		  Total Cost: [Price Here] <a href="coConf.html"><button class="btn-active">Checkout</button></a>
+			Total Cost: <div th:text="${totalCost}"></div> <a th:href="@{/submitBooking/{id}(id = ${showingID})}"><button class="btn-active">Checkout</button></a>
 		  </div>
 	  </div>
   </div>

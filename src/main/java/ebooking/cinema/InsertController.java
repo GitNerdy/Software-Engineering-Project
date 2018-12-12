@@ -33,4 +33,11 @@ public class InsertController {
 
         return "redirect:/editHalls";
     }
+
+    @PostMapping("/insertMovie")
+    public String addMovie(@ModelAttribute Movie movie) {
+        movie.addMovie();
+
+        return "redirect:/getAddMovie";
+    }
 }

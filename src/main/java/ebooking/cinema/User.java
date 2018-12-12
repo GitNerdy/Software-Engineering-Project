@@ -204,13 +204,14 @@ public class User {
             Statement myStatement = myConn.createStatement();
             System.out.println("Connected!");
             String sql = "INSERT INTO user (emailAddress, password, firstName, lastName, userTypeID) VALUES ('" + this.username + "', '" + this.password + "', '" + this.fname + "', '" + this.lname + "', '" + 1 + "')";
-            //myStatement.executeQuery("INSERT INTO user (emailAddress, password, firstName, lastName) VALUES ('" + this.username + "', '" + this.password + "', '" + this.fname + "', '" + this.lname + "')");
+            //myStatement.("INSERT INTO user (emailAddress, password, firstName, lastName) VALUES ('" + this.username + "', '" + this.password + "', '" + this.fname + "', '" + this.lname + "')");
             myStatement.executeUpdate(sql);
 
             ResultSet myResult = myStatement.executeQuery("SELECT *  FROM user WHERE emailAddress ='" + this.username + "' AND password='" + this.password + "'");
 
             if (myResult.next() == true) {
                 id = myResult.getInt("userID");
+                this.email = myResult.getString("emailAddress");
             }
 
 

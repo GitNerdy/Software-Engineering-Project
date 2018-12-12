@@ -13,3 +13,7 @@ input {
 .navbar {
   width: 100%;
 }
+
+.seat:hover {
+  background-color: blue;
+}

@@ -9,17 +9,14 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes("user")
 public class LoginController {
 
-    @GetMapping("/login")
-    public String userForm(Model model) {
-        model.addAttribute("user", new User());
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String userSubmit(@ModelAttribute("user") User user) {
+    /* @PostMapping("/login")
+    public String userSubmit(@SessionAttribute("user") User user, Model model) {
 
         if (user.login()) {
             //System.out.println("User status: " + user.loggedIn);
+            user.setLoggedIn(true);
+            model.addAttribute("user", user);
+
             return "index";
         }
 
@@ -33,5 +30,5 @@ public class LoginController {
         user.logout();
         System.out.println("User status: " + user.loggedIn);
         return "index";
-    }
+    } */
 }

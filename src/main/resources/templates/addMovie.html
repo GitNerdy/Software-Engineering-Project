@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <title>Add Movie</title>
   <!-- Bootstrap -->
-  <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+  <link href="/css/bootstrap-4.0.0.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
 
 </head>
@@ -23,7 +23,7 @@
 			  <li class="nav-item active">
 				  <a class="nav-link" href="#" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
 			  </li>
-			   <li class="nav-item" th:switch="${user.loggedIn}">
+			  <li class="nav-item" th:switch="${user.loggedIn}">
 				  <a th:case="false" class="nav-link" href="#" th:href="@{/register}">Registration</a>
 			  </li>
 			  <li class="nav-item" th:switch="${user.loggedIn}">
@@ -48,81 +48,107 @@
 
   <div class="container">
 	  <br>
+
+	  <form th:action="@{/insertMovie}" th:object="${newMovie}" method="post">
+	  <div class="row">
+	  	<div class="col-sm-6">
+			<div class="row">
+				<div class="col-sm-6">
+					<b>Movie Title</b>
+				</div>
+				<div class="col-sm-6" style="width: auto;">
+					<input type ="text" th:field="*{title}"  style="border: solid;">
+				</div>
+			</div>
+			
+			<br>
+			
+			<div class="row">
+				<div class="col-sm-6">
+					<b>Movie Summary</b>
+				</div>
+				<div class="col-sm-6">
+					<input type="text" th:field="*{synopsis}" placeholder="Movie Summary" style="height: 250px; border: solid;">
+				</div>
+			</div>
+			
+			<br>
+			
+			<div class="row">
+				<div class="col-sm-6">
+					<b>Genre</b>
+				</div>
+				<div class="col-sm-6">
+					<select th:field="*{genre}" name="genre" id="">
+						<option value=""></option>
+						<option value="horror">Horror</option>
+						<option value="action">Action</option>
+						<option value="drama">Drama</option>
+						<option value="comedy">Comedy</option>
+						<option value="romance">Romance</option>
+					</select>
+				</div>
+			</div>
+			
+		  </div>
+		  
+		  <div class="col-sm-6">
+				<!-- <div class="row">
+					<div class="col-sm-3">
+						<b>Movie Poster</b>
+					</div>
+					
+					<div class="col-sm-3">
+						<img th:attr="src=@{|images/*{image}|}" alt="" style="max-height: 250px; width: 100%;">
+					</div>
+					
+					<div class="col-sm-6" style="width: auto;">
+						<input type="file">
+					</div>
+				</div> -->
+
+			  <div class="row">
+				  <div class="col-sm-3">
+					  <b>Image</b>
+				  </div>
+
+				  <div class="col-sm-6">
+					  <input type="text" th:field="*{image}">
+				  </div>
+			  </div>
+			  
+			  <br>
+			  
+			  	<div class="row">
+			  		<div class="col-sm-6">
+						<b>Director:</b>
+					</div>
+			  		<div class="col-sm-6">
+						<input type="text" th:field="*{director}" style="border: solid;">
+					</div>
+			  	</div>
+			  
+			  <br>
+
+		  </div>
+	  </div>
+	  
+	  <br>
 	  
 	  <div class="row">
-	  	<h3><b>Basic Movie Info</b></h3>
+	  	<div class="col-sm-12">
+		  	<b>Cast</b>
+		  </div>
 	  </div>
 	  
 	  <br>
 
-	  <!-- Header Row -->
-	  <div class="row" style="text-align: center;">
-	  	<div class="col-sm-3">
-			<h4><b>Poster</b></h4>
-		  </div>
-	  	<div class="col-sm-3">
-			<h4><b>Title</b></h4>
-		  </div>
-		<div class="col-sm-2">
-		  <h4><b>Summary</b></h4>
-		  </div>
-		<div class="col-sm-2">
-		  	<h4><b>Movie Info</b></h4>
-		  </div>
-		<div class="col-sm-2">
-		  
-		  </div>
-	  </div>
-	  <!-- End Header Row -->
-
-	  <!-- Pull the list of current movies from DB and display here -->
-	  <div th:each="movie: ${movieList}">
-	  	  <div class="row" style="text-align: center;">
-		  <div class="col-sm-3">
-			  <img th:attr="src=@{|images/${movie.image}|}" style="max-height: 250px;">
-		  </div>
-
-		  <div class="col-sm-3" style="transform: translateY(50%);">
-			  <h4 th:text="${movie.movieTitle}"></h4>
-		  </div>
-
-		  <div class="col-sm-2">
-			  <span th:text="${movie.synopsis}"></span>
-		  </div>
-
-		  <div class="col-sm-2">
-			  <div>
-				  <span><b>Director:</b></span>
-				  <span th:text="${movie.director}"></span>
-			  </div>
-
-			  <div>
-				  <span><b>Producer:</b></span>
-				  <span th:text="${movie.producer}"></span>
-			  </div>
-
-			  <div>
-				  <span><b>Cast:</b></span>
-				  <span th:text="${movie.cast}"></span>
-			  </div>
-		  </div>
-
-		  <div class="col-sm-2" style="transform: translateY(50%);">
-			  <a th:href="@{/getEditMovie/{id}(id = ${movie.id})}"><button class="btn-active">Edit Movie</button></a>
-		  </div>
-	  </div>
-		  <br>
-
-	  </div>
-	  <!-- End Current Movie List -->
-
-	  <!-- Add Movie Button -->
-	  <div class="row" style="text-align: center;">
-		  <div class="col-sm-12">
-			  <a th:href="@{/getAddMovie}"><button class="btn-active">Add Movie</button></a>
-		  </div>
-	  </div>
 	  
+	  <div class="row">
+		  <input type="text" th:field="*{cast}" style="border: solid;">
+		  <div class="col-sm-4"><button class="btn-active">Update</button></div>
+	  </div>
+	  </form>
   </div>
 	<!-- End Container -->
 

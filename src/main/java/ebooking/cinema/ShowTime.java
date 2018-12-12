@@ -81,4 +81,28 @@ public class ShowTime {
             ex.printStackTrace();
         }
     }
+
+    public List<SeatAtShowing> getSeatsAtShowTime(){
+        List<SeatAtShowing> results = new ArrayList<SeatAtShowing>();
+        try {
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
+            Statement myStatement = myConn.createStatement();
+            String sql = "SELECT * FROM seatAtShowTime WHERE showTimeID ='" + id + "'" ;
+            ResultSet myResult = myStatement.executeQuery(sql);
+
+            // Get attributes of Movies we need for MovieList and add them to ArrayList
+            while (myResult.next()) {
+                SeatAtShowing temp = new SeatAtShowing();
+                temp.seatShowID = myResult.getInt("seatShowID");
+                temp.seatID = myResult.getInt("seatID");
+                temp.status = myResult.getString("status");
+                results.add(temp);
+            }
+        }
+
+        catch(Exception  ex){
+            ex.printStackTrace();
+        }
+        return results;
+    }
 }

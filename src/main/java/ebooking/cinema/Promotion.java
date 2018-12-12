@@ -94,4 +94,28 @@ public class Promotion {
             ex.printStackTrace();
         }
     }
+
+    public static int checkPromo(String code) {
+        int discount = -1;
+
+        try {
+
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
+            Statement myStatement = myConn.createStatement();
+            String sql = "SELECT * FROM promo WHERE promoCode = '" + code + "'";
+            ResultSet myResult = myStatement.executeQuery(sql);
+
+
+            while (myResult.next()) {
+                discount= myResult.getInt("discountAmount");
+            }
+
+        }
+
+        catch(Exception  ex){
+            ex.printStackTrace();
+        }
+
+        return discount;
+    }
 }

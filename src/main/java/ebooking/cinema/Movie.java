@@ -125,8 +125,33 @@ public class Movie {
 
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
             Statement myStatement = myConn.createStatement();
-            String sql = "UPDATE movie SET movieTitle = '" + this.title + "', cast = '" + this.cast + "', director = '" + this.director + "', synopsis = '" + this.synopsis + "', genre = '" + this.genre + "', producer = '" + this.producer + "' WHERE userID = '" + this.id + "'";
+            String sql = "UPDATE movie SET movieTitle = '" + this.title + "', cast = '" + this.cast + "', director = '" + this.director + "', synopsis = '" + this.synopsis + "', genre = '" + this.genre + "', producer = '" + this.producer + "' WHERE movieID = '" + this.id + "'";
             myStatement.executeUpdate(sql);
+        }
+
+        catch(Exception  ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void addMovie() {
+        try {
+            String id = "";
+
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
+            Statement myStatement = myConn.createStatement();
+            System.out.println("Connected!");
+            String sql = "INSERT INTO movie (movieTitle, cast, director, producer, synopsis, image) VALUES ('"+ this.title + "', '" + this.cast+ "', '" + this.director +" ', '" + this.producer +
+                    "', '" + this.synopsis + "', '" + this.image + "')";
+            //myStatement.executeQuery("INSERT INTO user (emailAddress, password, firstshowTimeID, lastshowTimeID) VALUES ('" + this.usershowTimeID + "', '" + this.password + "', '" + this.fshowTimeID + "', '" + this.lshowTimeID + "')");
+            myStatement.executeUpdate(sql);
+
+            /*ResultSet myResult = myStatement.executeQuery("SELECT *  FROM movie WHERE title ='" + this.title + "'" + "AND director ='" + this.director + "'");
+
+            if (myResult.next() == true) {
+                id = myResult.getString("movieID");
+            }
+            this.id = id;*/
         }
 
         catch(Exception  ex){

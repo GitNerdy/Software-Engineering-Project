@@ -9,6 +9,7 @@ public class Seat {
     String name;
     int hallID;
     int seatID;
+    String status;
 
     public String getName(){
         return name;
@@ -24,6 +25,14 @@ public class Seat {
     }
     public float getSeatID(){
         return seatID;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setSeatID(int seatID){

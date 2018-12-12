@@ -14,6 +14,7 @@ public class MovieShowing {
     String hallID;
     String showTimeID;
 
+
     String movieName;
     String hallName;
     String showTime;
@@ -73,6 +74,7 @@ public class MovieShowing {
     public void setHallName(String hallName) {
         this.hallName = hallName;
     }
+
 
     public List<MovieShowing> getShowings() {
         List<MovieShowing> results = new ArrayList<MovieShowing>();
@@ -138,6 +140,25 @@ public class MovieShowing {
     }
 
     public void insertShowing(MovieShowing showing, String hall) {
+        List<Seat> seats = new ArrayList<Seat>();
+
+        try {
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
+            Statement myStatement = myConn.createStatement();
+            String sql = "SELECT * FROM seat WHERE hallID = '" + hall + "'";
+            ResultSet myResults = myStatement.executeQuery(sql);
+
+            while(myResults.next()) {
+                Seat temp = new Seat();
+                temp.seatID = myResults.getInt("seatID");
+                seats.add(temp);
+            }
+        }
+
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
         try {
 
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
@@ -147,6 +168,101 @@ public class MovieShowing {
 
         }
 
+        catch(Exception  ex){
+            ex.printStackTrace();
+        }
+
+        for(Seat seat: seats) {
+            try {
+
+                Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
+                Statement myStatement = myConn.createStatement();
+                String sql = "INSERT INTO seatAtShowTime (seatID, showingID, status) VALUES('"+ seat.seatID +"', '" + showing.showTimeID + "', 'open')";
+                myStatement.executeUpdate(sql);
+
+            }
+
+            catch(Exception  ex){
+                ex.printStackTrace();
+            }
+        }
+
+
+    }
+
+    public List<MovieShowing> getShowingsMovie(String id) {
+        List<MovieShowing> results = new ArrayList<MovieShowing>();
+        MovieShowing temp = new MovieShowing();
+
+        try {
+
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
+            Statement myStatement = myConn.createStatement();
+            String sql = "SELECT * FROM movieShowing " +
+                    "INNER JOIN showTime ON showTime.showTimeID=movieShowing.showTime WHERE movieID = '" + id + "'";
+
+            ResultSet myResult = myStatement.executeQuery(sql);
+
+            // Get attributes of Movies we need for MovieList and add them to ArrayList
+            while (myResult.next()) {
+                temp = new MovieShowing();
+
+                temp.id = myResult.getString("showingID");
+                temp.showTimeID = myResult.getString("showTime");
+
+                temp.showTime = myResult.getString("time");
+
+                results.add(temp);
+            }
+
+
+
+        }
+
+        catch(Exception  ex){
+            ex.printStackTrace();
+        }
+
+
+        return results;
+    }
+
+    public static List<SeatAtShowing> getSeatsAtShowing(String id){
+        List<SeatAtShowing> results = new ArrayList<SeatAtShowing>();
+        try {
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
+            Statement myStatement = myConn.createStatement();
+            String sql = "SELECT * FROM seatAtShowTime INNER JOIN seat ON seatAtShowTime.seatID = seat.seatID WHERE showingID ='" + id + "'" ;
+            ResultSet myResult = myStatement.executeQuery(sql);
+            // Get attributes of Movies we need for MovieList and add them to ArrayList
+            while (myResult.next()) {
+                SeatAtShowing temp = new SeatAtShowing();
+                temp.seatShowingID = myResult.getInt("seatShowID");
+                temp.seatID = myResult.getInt("seatID");
+                temp.status = myResult.getString("status");
+                temp.seatName = myResult.getString("name");
+                results.add(temp);
+            }
+        }
+        catch(Exception  ex){
+            ex.printStackTrace();
+        }
+        return results;
+    }
+
+    //UPDATE seatAtShowing
+    public void updateSeatsAtShowing(List<SeatAtShowing> selected){
+        selected = new ArrayList<SeatAtShowing>();
+        try {
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema2.0?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "LegendOfLink30");
+            Statement myStatement = myConn.createStatement();
+            for(int i = 0; i < selected.size(); i++) {
+                String sql = "UPDATE seatAtShowing SET status ='" + selected.get(i).getStatus() + "' WHERE seatShowingID ='"
+                        + selected.get(i).getSeatShowingID() + "'";
+                ResultSet myResult = myStatement.executeQuery(sql);
+            }
+            // Get attributes of Movies we need for MovieList and add them to ArrayList
+        }
         catch(Exception  ex){
             ex.printStackTrace();
         }

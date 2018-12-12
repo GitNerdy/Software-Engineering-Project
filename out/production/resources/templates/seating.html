@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login</title>
   <!-- Bootstrap -->
-  <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+  <link href="/css/bootstrap-4.0.0.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
 
 </head>
@@ -50,95 +50,52 @@
 	  <br>
 	  
 	  	<div class="row">
-	  		<h4>Choose Seating for [Num Tickets] Tickets</h4>
+	  		<!-- <h4>Choose Seating for [Num Tickets] Tickets</h4> -->
 	  	</div>
 	  
 	  	<hr>
 	  
 		<div class="row">
 			<div class="col-sm-4" style="text-align: center;"><b>Ticket ID</b></div>
-			<div class="col-sm-4" style="text-align: center;">Age</div>
+			<div class="col-sm-4" style="text-align: center;"><b>Age</b></div>
 			<div class="col-sm-4" style="text-align: center;"><b>Seat</b></div>
 	  	</div>
 	  
 	  <br>
-	  
-	  <div class="row">
-			<div class="col-sm-4" style="text-align: center;"><b>001</b></div>
-			<div class="col-sm-4" style="text-align: center;"><b>Child</b></div>
-			<div class="col-sm-4" style="text-align: center;">
-		  		<select name="num" id="">
-					<option value="0">A1</option>
-					<option value="1">A2</option>
-					<option value="3">A3</option>
-					<option value="4">A4</option>
-					<option value="5">B1</option>
-					<option value="6">B2</option>
-					<option value="7">B3</option>
-					<option value="8">B4</option>
-					<option value="9">C1</option>
-					<option value="10">C2</option>
+
+	  <form th:action="@{/getBookingConfirmation/{id}(id = ${showingID})}" th:object="${seatSpots}" method="post">
+	  <div th:each="ticket: ${ticketList}">
+	  	<div class="row" style="text-align: center;">
+			<div class="col-sm-4" th:text="${ticket.ticketID}"><b>001</b></div>
+			<div class="col-sm-4" th:text="${ticket.ageGroup}"><b >Child</b></div>
+			<div class="col-sm-4">
+		  		<select name="num">
+					<option th:each="seat, itemStat : *{seatList}" th:value="${seat.seatID}" th:switch="${seat.status}" th:case="open" th:text="${seat.name}" th:field="*{seatList[__${itemStat.index}__].name}" >A1</option>
 				</select>
 		  	</div>
 	  	</div>
-	  
+		  <br>
+	  </div>
 	  	  <br>
-	  
-	  <div class="row">
-			<div class="col-sm-4" style="text-align: center;"><b>002</b></div>
-			<div class="col-sm-4" style="text-align: center;"><b>Adult</b></div>
-			<div class="col-sm-4" style="text-align: center;">
-		  		<select name="num" id="">
-					<option value="0">A1</option>
-					<option value="1">A2</option>
-					<option value="3">A3</option>
-					<option value="4">A4</option>
-					<option value="5">B1</option>
-					<option value="6">B2</option>
-					<option value="7">B3</option>
-					<option value="8">B4</option>
-					<option value="9">C1</option>
-					<option value="10">C2</option>
-				</select>
-		  	</div>
-	  	</div>
-	  
-	  	  <br>
-	  
-	  <div class="row">
-			<div class="col-sm-4" style="text-align: center;"><b>003</b></div>
-			<div class="col-sm-4" style="text-align: center;"><b>Adult</b></div>
-			<div class="col-sm-4" style="text-align: center;">
-		  		<select name="num" id="">
-					<option value="0">A1</option>
-					<option value="1">A2</option>
-					<option value="3">A3</option>
-					<option value="4">A4</option>
-					<option value="5">B1</option>
-					<option value="6">B2</option>
-					<option value="7">B3</option>
-					<option value="8">B4</option>
-					<option value="9">C1</option>
-					<option value="10">C2</option>
-				</select>
-		  	</div>
-	  	</div>
-	  
+
 	  <hr>
 	  
 	  <div class="row">
-	  	<div class="col-sm-12" style="text-align: center;">
-		  	<h1>Seating Image Here</h1>
-		  </div>
+	  	<div class="col-sm-4" th:each="seat: ${seatList}" style="text-align: center;">
+			<div th:switch="${seat.status}" th:case="open"><div class="seat" th:text="${seat.seatName}" style="display: inline-block; height: 100px; width: 100px; border: solid; margin-bottom: 20px;"></div></div>
+			<div th:switch="${seat.status}" th:case="taken"><div class="seat" th:text="${seat.seatName}" style="display: inline-block; height: 100px; width: 100px; border: solid; margin-bottom: 20px; background-color: red;"></div></div>
+
+		</div>
 	  </div>
 	  
 	  <hr>
 	  
 	  <div class="row">
 	  	<div class="col-sm-4 offset-8" style="text-align: center;">
-		  Total Cost: [Price Here] <a href="checkout.html"><button class="btn-active">Place Order</button></a>
+		  <button class="btn-active" type="submit">Place Order</button>
 		  </div>
 	  </div>
+	  </form>
   </div>
 	<!-- End Container -->
 

@@ -47,7 +47,7 @@
   </nav>
 
   <div class="container">
-	  <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+	  <form action="#" th:action="@{/login}" th:object="${login}" method="post">
 	  <br>
 	  
 	  <div class="row">
@@ -68,6 +68,16 @@
       </div>
     </div>
 		  <button class="btn-primary my-2 my-sm-0" type="submit">Submit</button>
+
+        <div class="row">
+          <div class="col-md-4">
+            <!-- <span>Forget Password</span>
+            <input type="checkbox" th:field="*{promo}" value=1> -->
+          </div>
+          <div class="offset-2 col-md-6">
+
+          </div>
+        </div>
 	  </form>
   </div>
 	<!-- End Container -->
